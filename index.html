@@ -1,1 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmileMail - Send Real Postcards From Your Phone</title>
+    
+    <!-- Favicon with rotated arc -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjU5ZTBiIiBzdHJva2Utd2lkdGg9IjEuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICA8ZGVmcz4KICAgIDxjbGlwUGF0aCBpZD0icGNjbGlwIj4KICAgICAgPHJlY3QgeD0iMi41IiB5PSI1LjUiIHdpZHRoPSIxOSIgaGVpZHRoPSIxMyIgcng9IjIiIHJ5PSIyIj48L3JlY3Q+CiAgICA8L2NsaXBQYXRoPgogIDwvZGVmcz4KICA8ZyBjbGlwLXBhdGg9InVybCgjcGNjbGlwKSI+CiAgICA8cmVjdCB4PSIyLjUiIHk9IjUuNSIgd2lkdGg9IjE5IiBoZWlnaHQ9IjEzIiByeD0iMiIgcnk9IjIiPjwvcmVjdD4KICAgIDxwYXRoIGQ9Ik0xNSA5LjUgYSA0IDQgMCAwIDAgOCA0IiBzdHJva2U9ImJsYWNrIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjUsIDE3LCAxMS41KSI+PC9wYXRoPgogIDwvZz4KPC9zdmc+">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* New warmer gradient for the hero */
+        .hero-gradient {
+            background: linear-gradient(-45deg, #fef3c7, #fde68a, #fbbf24, #f59e0b);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* Simple spinner for the AI button */
+        .spinner {
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #ffffff;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <!-- Logo: "Side profile" smile with rotation -->
+            <a href="./smilemail_landing_page.html" class="flex items-center space-x-2 text-2xl font-bold text-gray-900">
+                <svg class="w-9 h-9 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                        <clipPath id="postcardClipHeader">
+                            <rect x="2.5" y="5.5" width="19" height="13" rx="2" ry="2"></rect>
+                        </clipPath>
+                    </defs>
+                    <g clip-path="url(#postcardClipHeader)">
+                        <rect x="2.5" y="5.5" width="19" height="13" rx="2" ry="2" stroke="currentColor"></rect>
+                        <!-- Arc with anti-clockwise rotation -->
+                        <path d="M15 9.5 a 4 4 0 0 0 8 4" stroke="black" transform="rotate(-25, 17, 11.5)"></path>
+                    </g>
+                </svg>
+                <span class="font-bold">SmileMail</span>
+            </a>
+            
+            <!-- Navigation -->
+            <div class="flex items-center space-x-6">
+                <a href="./about.html" class="text-gray-600 hover:text-amber-600 text-sm font-medium transition-colors">Always Free</a>
+                <a href="./smilemail_landing_page.html" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-300">
+                    Send a Card
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        
+        <!-- Hero Section -->
+        <section class="hero-gradient text-center pt-24 pb-32">
+            <div class="container mx-auto px-6">
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                    Send a real postcard, <span class="text-amber-800">right from your phone.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-10">
+                    Turn your digital photos into beautiful, physical postcards delivered to their mailbox. A real message in a digital world.
+                </p>
+                <a href="#" class="bg-white text-amber-600 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transform hover:-translate-y-1 transition-all duration-300 text-lg">
+                    Create Your First Postcard
+                </a>
+                <p class="text-gray-700 mt-4 text-sm">Make someone smile today.</p>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">From Screen to Mailbox in Minutes.</h2>
+                    <p class="text-lg text-gray-600 max-w-xl mx-auto">
+                        Optimized for mobile so you can send a smile anytime, anywhere.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-10">
+                    
+                    <!-- Step 1 -->
+                    <div class="text-center p-8">
+                        <div class="bg-amber-100 text-amber-600 rounded-full w-20 h-20 flex items-center justify-center mb-5 mx-auto shadow-lg">
+                            <!-- Icon: Smartphone -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">1. Create Your Card</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Upload your own photo or use our library. Add custom text and emojis right on the front.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="text-center p-8">
+                        <div class="bg-amber-100 text-amber-600 rounded-full w-20 h-20 flex items-center justify-center mb-5 mx-auto shadow-lg">
+                            <!-- Icon: Edit/Pen -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">2. Write Your Message</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Type a personal message, or use our ✨ AI Assistant to help you find the perfect words. Add the recipient's address.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="text-center p-8">
+                        <div class="bg-amber-100 text-amber-600 rounded-full w-20 h-20 flex items-center justify-center mb-5 mx-auto shadow-lg">
+                            <!-- Icon: Send/Paper Plane -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">3. We Mail It for You</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            We print, stamp, and mail your beautiful, high-quality postcard. It arrives in just a few days.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features/Value Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">More Than Just a Message.</h2>
+                    <p class="text-lg text-gray-600 max-w-xl mx-auto">
+                        In a world of instant messages, send something they can hold on to.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-4 gap-10">
+                    
+                    <!-- Feature 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-amber-100 text-amber-600 rounded-full w-16 h-16 flex items-center justify-center mb-5">
+                            <!-- Icon: Heart -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">A Physical Connection</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            A real postcard is a keepsake. It's something you can't get from a text. It shows you truly care.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-amber-100 text-amber-600 rounded-full w-16 h-16 flex items-center justify-center mb-5">
+                            <!-- Icon: Gift/Mailbox -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">The Perfect Surprise</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Receiving personal mail is rare and memorable. It's the perfect way to surprise friends and family.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-amber-100 text-amber-600 rounded-full w-16 h-16 flex items-center justify-center mb-5">
+                            <!-- Icon: Star -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="m12 3-1.9 4.8-5.1.8 3.7 3.6L7.8 17 12 14.3 16.2 17l-1-4.8 3.7-3.6-5.1-.8L12 3Z"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">Fun & Easy to Create</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Our simple, mobile-friendly editor makes building your perfect postcard a joy, not a chore.
+                        </p>
+                    </div>
+
+                    <!-- NEW: AI Feature Card -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-amber-100 text-amber-600 rounded-full w-16 h-16 flex items-center justify-center mb-5">
+                            <!-- Icon: Sparkles -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="M10 3L8 21m-6-8h16M3 10l18 8L3 10zM21 10l-8 11-8-11"/></svg>
+NOT_SERIALIZED_MARKDOWN_IMAGE_WIDTH: 24
+NOT_SERIALIZED_MARKDOWN_IMAGE_HEIGHT: 24
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">✨ AI Message Helper</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Stuck on what to write? Our AI assistant helps you craft the perfect personal message in seconds.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: Gemini AI Demo Section -->
+        <section id="ai-demo" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Never be stuck for words.</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        See how our ✨ AI Message Assistant helps you write the perfect postcard.
+                    </p>
+                </div>
+
+                <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden p-8 md:p-12 border border-gray-100">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Left Side: Inputs -->
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Tell us about your card:</h3>
+                            <div>
+                                <label for="ai-who" class="block text-sm font-medium text-gray-700 mb-1">Who is it for?</label>
+                                <input type="text" id="ai-who" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="e.g., My sister, Jane">
+                            </div>
+                            <div>
+                                <label for="ai-occasion" class="block text-sm font-medium text-gray-700 mb-1">What's the occasion?</label>
+                                <input type="text" id="ai-occasion" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="e.g., Just saying hello!">
+                            </div>
+                            <div>
+                                <label for="ai-tone" class="block text-sm font-medium text-gray-700 mb-1">What's the tone?</label>
+                                <select id="ai-tone" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    <option>Heartfelt</option>
+                                    <option>Funny</option>
+                                    <option>Casual</option>
+                                    <option>Excited</option>
+                                </select>
+                            </div>
+                            <button id="ai-generate-btn" class="w-full bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg text-base font-semibold shadow-md transition-colors duration-300 flex items-center justify-center space-x-2">
+                                <span id="ai-btn-text">✨ Generate Message Idea</span>
+                                <div id="ai-spinner" class="spinner hidden"></div>
+                            </button>
+                            <p id="ai-error" class="text-red-500 text-sm mt-2 hidden">Oops! Something went wrong. Please try again.</p>
+                        </div>
+                        
+                        <!-- Right Side: Postcard Output -->
+                        <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Your AI-Drafted Message:</h3>
+                            <div class="w-full h-48 bg-white rounded-md border border-gray-300 p-4">
+                                <textarea id="ai-message-output" class="w-full h-full text-gray-700 text-lg font-serif resize-none border-none focus:ring-0 p-0" placeholder="Your message will appear here..."></textarea>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 text-center">This is just a starting point. You can edit it in the app!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Final CTA Section -->
+        <section id="pricing" class="py-24 bg-amber-700 text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-white mb-6">
+                    Ready to send a smile?
+                </h2>
+                <p class="text-lg text-amber-100 max-w-xl mx-auto mb-10">
+                    Create your first postcard today and make someone's day.
+                    Simple, personal, and always memorable.
+                </p>
+                <a href="#" class="bg-white text-amber-600 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transform hover:-translate-y-1 transition-all duration-300 text-lg">
+                    Send a Card
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200">
+        <div class="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-4 md:mb-0">
+                <!-- Logo: "Side profile" smile with rotation -->
+                <a href="./smilemail_landing_page.html" class="flex items-center justify-center md:justify-start space-x-2 text-xl font-bold text-gray-900">
+                    <svg class="w-8 h-8 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <defs>
+                            <clipPath id="postcardClipFooter">
+                                <rect x="2.5" y="5.5" width="19" height="13" rx="2" ry="2"></rect>
+                            </clipPath>
+                        </defs>
+                        <g clip-path="url(#postcardClipFooter)">
+                            <rect x="2.5" y="5.5" width="19" height="13" rx="2" ry="2" stroke="currentColor"></rect>
+                            <!-- Arc with anti-clockwise rotation -->
+                            <path d="M15 9.5 a 4 4 0 0 0 8 4" stroke="black" transform="rotate(-25, 17, 11.5)"></path>
+                        </g>
+                    </svg>
+                    <span>SmileMail</span>
+                </a>
+            </div>
+            <div class="flex space-x-6 mb-4 md:mb-0">
+                <a href="./about.html" class="text-gray-500 hover:text-gray-900">About</a>
+                <a href="#" class="text-gray-500 hover:text-gray-900 hidden">Privacy</a>
+            </div>
+            <p class="text-gray-500 text-sm">
+                &copy; 2025 SmileMail.app. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Gemini API Script -->
+    <script>
+        document.getElementById('ai-generate-btn').addEventListener('click', async () => {
+            const who = document.getElementById('ai-who').value;
+            const occasion = document.getElementById('ai-occasion').value;
+            const tone = document.getElementById('ai-tone').value;
+            const outputArea = document.getElementById('ai-message-output');
+            const errorArea = document.getElementById('ai-error');
+            const button = document.getElementById('ai-generate-btn');
+            const btnText = document.getElementById('ai-btn-text');
+            const spinner = document.getElementById('ai-spinner');
+
+            // --- Construct the prompts ---
+            const systemPrompt = "You are a creative and friendly assistant who helps write short, personal messages for postcards. Your tone should be warm and casual, like a real friend. Do not use hashtags or sign-offs (like 'From, John'). Limit the response to 3 short sentences.";
+            
+            // User query
+            let userQuery = `Write a ${tone.toLowerCase()} postcard message for ${who || 'someone'} about ${occasion || 'just saying hi'}.`;
+            if (!who && !occasion) {
+                userQuery = `Write a short, ${tone.toLowerCase()} postcard message, just saying hello.`;
+            }
+
+            // --- Toggle UI state ---
+            btnText.textContent = "Generating...";
+            spinner.classList.remove('hidden');
+            button.disabled = true;
+            errorArea.classList.add('hidden');
+            outputArea.value = "Thinking...";
+
+            try {
+                const generatedText = await callGeminiApi(userQuery, systemPrompt);
+                outputArea.value = generatedText;
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                outputArea.value = "Sorry, I couldn't think of anything. Please try again!";
+                errorArea.classList.remove('hidden');
+            } finally {
+                // --- Restore UI state ---
+                btnText.textContent = "✨ Generate Message Idea";
+                spinner.classList.add('hidden');
+                button.disabled = false;
+            }
+        });
+
+        async function callGeminiApi(userQuery, systemPrompt, retries = 3, delay = 1000) {
+            const apiKey = ""; // API key will be provided by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+                generationConfig: {
+                    maxOutputTokens: 100
+                }
+            };
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates[0].content?.parts?.[0]?.text) {
+                        return result.candidates[0].content.parts[0].text.trim();
+                    } else {
+                        throw new Error("Invalid response structure from API.");
+                    }
+
+                } catch (error) {
+                    console.warn(`Attempt ${i + 1} failed. Retrying in ${delay}ms...`);
+                    if (i === retries - 1) throw error; // Re-throw last error
+                    await new Promise(res => setTimeout(res, delay));
+                    delay *= 2; // Exponential backoff
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
 
