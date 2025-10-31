@@ -200,8 +200,6 @@
                         <div class="bg-amber-100 text-amber-600 rounded-full w-16 h-16 flex items-center justify-center mb-5">
                             <!-- Icon: Sparkles -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="M10 3L8 21m-6-8h16M3 10l18 8L3 10zM21 10l-8 11-8-11"/></svg>
-NOT_SERIALIZED_MARKDOWN_IMAGE_WIDTH: 24
-NOT_SERIALIZED_MARKDOWN_IMAGE_HEIGHT: 24
                         </div>
                         <h3 class="text-2xl font-semibold text-gray-900 mb-3">✨ AI Message Helper</h3>
                         <p class="text-gray-600 leading-relaxed">
@@ -314,7 +312,7 @@ NOT_SERIALIZED_MARKDOWN_IMAGE_HEIGHT: 24
         </div>
     </footer>
 
-    <!-- Gemini API Script -->
+    <!-- Vercel-ready API Script -->
     <script>
         document.getElementById('ai-generate-btn').addEventListener('click', async () => {
             const who = document.getElementById('ai-who').value;
@@ -343,10 +341,12 @@ NOT_SERIALIZED_MARKDOWN_IMAGE_HEIGHT: 24
             outputArea.value = "Thinking...";
 
             try {
-                const generatedText = await callGeminiApi(userQuery, systemPrompt);
+                // *** UPDATED CALL ***
+                // We now call our OWN serverless function, not Google's API
+                const generatedText = await callOurApi(userQuery, systemPrompt);
                 outputArea.value = generatedText;
             } catch (error) {
-                console.error("Gemini API Error:", error);
+                console.error("API Error:", error);
                 outputArea.value = "Sorry, I couldn't think of anything. Please try again!";
                 errorArea.classList.remove('hidden');
             } finally {
@@ -357,18 +357,14 @@ NOT_SERIALIZED_MARKDOWN_IMAGE_HEIGHT: 24
             }
         });
 
-        async function callGeminiApi(userQuery, systemPrompt, retries = 3, delay = 1000) {
-            const apiKey = ""; // API key will be provided by the environment
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+        // *** This function calls our OWN serverless function at /api/generate ***
+        async function callOurApi(userQuery, systemPrompt, retries = 3, delay = 1000) {
+            // This is the relative path to our new Vercel function
+            const apiUrl = '/api/generate';
 
             const payload = {
-                contents: [{ parts: [{ text: userQuery }] }],
-                systemInstruction: {
-                    parts: [{ text: systemPrompt }]
-                },
-                generationConfig: {
-                    maxOutputTokens: 100
-                }
+                userQuery,
+                systemPrompt
             };
 
             for (let i = 0; i < retries; i++) {
@@ -385,10 +381,10 @@ NOT_SERIALIZED_MARKDOWN_IMAGE_HEIGHT: 24
 
                     const result = await response.json();
                     
-                    if (result.candidates && result.candidates[0].content?.parts?.[0]?.text) {
-                        return result.candidates[0].content.parts[0].text.trim();
+                    if (result.text) {
+                        return result.text;
                     } else {
-                        throw new Error("Invalid response structure from API.");
+                        throw new Error("Invalid response structure from our API.");
                     }
 
                 } catch (error) {
