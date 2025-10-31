@@ -29,7 +29,7 @@ export default async function handler(request, response) {
             parts: [{ text: systemPrompt }]
         },
         generationConfig: {
-            maxOutputTokens: 100
+            maxOutputTokens: 512
         }
     };
 
