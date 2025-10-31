@@ -54,10 +54,15 @@ export default async function handler(request, response) {
             // Send the generated text back to our client
             return response.status(200).json({ text: text });
         } else {
+            // *** NEW LOGGING ADDED HERE ***
+            // Log the entire unexpected response from Google to Vercel
+            console.error("Unexpected response structure from Gemini:", JSON.stringify(result, null, 2));
             throw new Error("Invalid response structure from API.");
         }
 
     } catch (error) {
+
+        
         console.error("Error in serverless function:", error);
         return response.status(500).json({ error: 'Failed to generate message.' });
     }
